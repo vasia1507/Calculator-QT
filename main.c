@@ -11,6 +11,9 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
   window = gtk_application_window_new(app);
   gtk_window_set_title(GTK_WINDOW(window), "SmartCalc_v1.0");
+
+  gtk_window_fullscreen(GTK_WINDOW(window));
+
   gtk_window_set_default_size (GTK_WINDOW (window), 1920, 1080);
 
   grid = gtk_grid_new();
