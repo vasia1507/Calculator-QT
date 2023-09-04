@@ -7,6 +7,7 @@ typedef struct {
   char* text;
 } data;
 
+static void script_add_text_to_label(GtkWidget *button, gpointer my_tmp);
 static void change_label(GtkWidget *button, GtkWidget *widget);
 static void activate(GtkApplication *app, gpointer user_data);
 
