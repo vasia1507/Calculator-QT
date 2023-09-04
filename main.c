@@ -158,18 +158,21 @@ static void activate(GtkApplication *app, gpointer user_data) {
   gtk_grid_attach(GTK_GRID(grid), button, 6, 3, 1, 1);
 
   // Пятая строка
-  button = gtk_button_new_with_label("1");
-  gtk_widget_set_size_request(button, 120, 120);
-  data* tmp = g_new(data, 1);
-  tmp->widget = label;
-  tmp->text = "1";
-  g_signal_connect(button, "clicked", G_CALLBACK(script_add_text_to_label), tmp);
-  gtk_grid_attach(GTK_GRID(grid), button, 0, 4, 1, 1);
+  GtkWidget* button_1 = gtk_button_new_with_label("1");
+  gtk_widget_set_size_request(button_1, 120, 120);
+  data* tmp_1 = g_new(data, 1);
+  tmp_1->widget = label;
+  tmp_1->text = "1";
+  g_signal_connect(button_1, "clicked", G_CALLBACK(script_add_text_to_label), tmp_1);
+  gtk_grid_attach(GTK_GRID(grid), button_1, 0, 4, 1, 1);
 
-  button = gtk_button_new_with_label("2");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 1, 4, 1, 1);
+  GtkWidget* button_2 = gtk_button_new_with_label("2");
+  gtk_widget_set_size_request(button_2, 120, 120);
+  data* tmp_2 = g_new(data, 1);
+  tmp_2->widget = label;
+  tmp_2->text = "2";
+  g_signal_connect(button_2, "clicked", G_CALLBACK(script_add_text_to_label), tmp_2);
+  gtk_grid_attach(GTK_GRID(grid), button_2, 1, 4, 1, 1);
 
   button = gtk_button_new_with_label("3");
   gtk_widget_set_size_request(button, 120, 120);
