@@ -1,4 +1,24 @@
+#include <stdio.h>
+#include <string.h>
 #include <gtk/gtk.h>
+
+typedef struct {
+  GtkWidget *widget;
+  char* text;
+} data;
+
+static void change_label(GtkWidget *button, GtkWidget *widget);
+static void activate(GtkApplication *app, gpointer user_data);
+
+static void script_add_text_to_label(GtkWidget *button, gpointer my_tmp) {
+  data* tmp = (data*)(my_tmp);
+  char* str = (char*)gtk_label_get_text(GTK_LABEL(tmp->widget));
+  char* buff = calloc(strlen(str) + strlen(tmp->text) + 1, sizeof(char));
+  strcat(buff, str);
+  strcat(buff, tmp->text);
+  gtk_label_set_text(GTK_LABEL(tmp->widget), buff);
+  printf("%s\n%s\n", tmp->text, buff);
+}
 
 static void change_label(GtkWidget *button, GtkWidget *widget) {
   gtk_label_set_text(GTK_LABEL(widget), "Привет");
@@ -30,15 +50,15 @@ static void activate(GtkApplication *app, gpointer user_data) {
   gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 7, 1);
 
   // Вторая строка
-  button = gtk_button_new_with_label("AC");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 0, 1, 1, 1);
+  GtkWidget *button_AC = gtk_button_new_with_label("AC");
+  gtk_widget_set_size_request(button_AC, 120, 120);
+  g_signal_connect(button_AC, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_AC, 0, 1, 1, 1);
 
-  button = gtk_button_new_with_label("+/-");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 1, 1, 1, 1);
+  GtkWidget *button_plus_minus = gtk_button_new_with_label("+/-");
+  gtk_widget_set_size_request(button_plus_minus, 120, 120);
+  g_signal_connect(button_plus_minus, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_plus_minus, 1, 1, 1, 1);
 
   button = gtk_button_new_with_label("<-");
   gtk_widget_set_size_request(button, 120, 120);
@@ -140,7 +160,10 @@ static void activate(GtkApplication *app, gpointer user_data) {
   // Пятая строка
   button = gtk_button_new_with_label("1");
   gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
+  data* tmp = g_new(data, 1);
+  tmp->widget = label;
+  tmp->text = "1";
+  g_signal_connect(button, "clicked", G_CALLBACK(script_add_text_to_label), tmp);
   gtk_grid_attach(GTK_GRID(grid), button, 0, 4, 1, 1);
 
   button = gtk_button_new_with_label("2");
