@@ -53,11 +53,10 @@ static void activate(GtkApplication* app, gpointer user_data) {
   g_signal_connect(button_AC, "clicked", G_CALLBACK(change_label), label);
   gtk_grid_attach(GTK_GRID(grid), button_AC, 0, 2, 1, 1);
 
-  GtkWidget* button_plus_minus = gtk_button_new_with_label("+/-");
-  gtk_widget_set_size_request(button_plus_minus, 120, 120);
-  g_signal_connect(button_plus_minus, "clicked", G_CALLBACK(change_label),
-                   label);
-  gtk_grid_attach(GTK_GRID(grid), button_plus_minus, 1, 2, 1, 1);
+  button = gtk_button_new_with_label("+/-");
+  gtk_widget_set_size_request(button, 120, 120);
+  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button, 1, 2, 1, 1);
 
   button = gtk_button_new_with_label("<-");
   gtk_widget_set_size_request(button, 120, 120);
@@ -121,40 +120,40 @@ static void activate(GtkApplication* app, gpointer user_data) {
   gtk_grid_attach(GTK_GRID(grid), button, 6, 3, 1, 1);
 
   // Четвертая строка
-  button = gtk_button_new_with_label("4");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 0, 4, 1, 1);
+  GtkWidget* button_4 = gtk_button_new_with_label("4");
+  gtk_widget_set_size_request(button_4, 120, 120);
+  g_signal_connect(button_4, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_4, 0, 4, 1, 1);
 
-  button = gtk_button_new_with_label("5");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 1, 4, 1, 1);
+  GtkWidget* button_5 = gtk_button_new_with_label("5");
+  gtk_widget_set_size_request(button_5, 120, 120);
+  g_signal_connect(button_5, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_5, 1, 4, 1, 1);
 
-  button = gtk_button_new_with_label("6");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 2, 4, 1, 1);
+  GtkWidget* button_6 = gtk_button_new_with_label("6");
+  gtk_widget_set_size_request(button_6, 120, 120);
+  g_signal_connect(button_6, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_6, 2, 4, 1, 1);
 
-  button = gtk_button_new_with_label("-");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 3, 4, 1, 1);
+  GtkWidget* button_minus = gtk_button_new_with_label("-");
+  gtk_widget_set_size_request(button_minus, 120, 120);
+  g_signal_connect(button_minus, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_minus, 3, 4, 1, 1);
 
-  button = gtk_button_new_with_label("cos");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 4, 4, 1, 1);
+  GtkWidget* button_cos = gtk_button_new_with_label("cos");
+  gtk_widget_set_size_request(button_cos, 120, 120);
+  g_signal_connect(button_cos, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_cos, 4, 4, 1, 1);
 
-  button = gtk_button_new_with_label("sin");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 5, 4, 1, 1);
+  GtkWidget* button_sin = gtk_button_new_with_label("sin");
+  gtk_widget_set_size_request(button_sin, 120, 120);
+  g_signal_connect(button_sin, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_sin, 5, 4, 1, 1);
 
-  button = gtk_button_new_with_label("tan");
-  gtk_widget_set_size_request(button, 120, 120);
-  g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button, 6, 4, 1, 1);
+  GtkWidget* button_tan = gtk_button_new_with_label("tan");
+  gtk_widget_set_size_request(button_tan, 120, 120);
+  g_signal_connect(button_tan, "clicked", G_CALLBACK(change_label), label);
+  gtk_grid_attach(GTK_GRID(grid), button_tan, 6, 4, 1, 1);
 
   // Пятая строка
   GtkWidget* button_1 = gtk_button_new_with_label("1");
