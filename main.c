@@ -1,17 +1,17 @@
+#include <gtk/gtk.h>
 #include <stdio.h>
 #include <string.h>
-#include <gtk/gtk.h>
 
 typedef struct {
-  GtkWidget *widget;
+  GtkWidget* widget;
   char* text;
 } data;
 
-static void script_add_text_to_label(GtkWidget *button, gpointer my_tmp);
-static void change_label(GtkWidget *button, GtkWidget *widget);
-static void activate(GtkApplication *app, gpointer user_data);
+static void script_add_text_to_label(GtkWidget* button, gpointer my_tmp);
+static void change_label(GtkWidget* button, GtkWidget* widget);
+static void activate(GtkApplication* app, gpointer user_data);
 
-static void script_add_text_to_label(GtkWidget *button, gpointer my_tmp) {
+static void script_add_text_to_label(GtkWidget* button, gpointer my_tmp) {
   data* tmp = (data*)(my_tmp);
   char* str = (char*)gtk_label_get_text(GTK_LABEL(tmp->widget));
   char* buff = calloc(strlen(str) + strlen(tmp->text) + 1, sizeof(char));
@@ -21,37 +21,38 @@ static void script_add_text_to_label(GtkWidget *button, gpointer my_tmp) {
   printf("%s\n%s\n", tmp->text, buff);
 }
 
-static void change_label(GtkWidget *button, GtkWidget *widget) {
+static void change_label(GtkWidget* button, GtkWidget* widget) {
   gtk_label_set_text(GTK_LABEL(widget), "Expression : ");
 }
 
-static void activate(GtkApplication *app, gpointer user_data) {
-  GtkWidget *window;
-  GtkWidget *grid;
-  GtkWidget *button;
+static void activate(GtkApplication* app, gpointer user_data) {
+  GtkWidget* window;
+  GtkWidget* grid;
+  GtkWidget* button;
 
   window = gtk_application_window_new(app);
   gtk_window_set_title(GTK_WINDOW(window), "SmartCalc_v1.0");
-//  gtk_window_fullscreen(GTK_WINDOW(window));
-  gtk_window_set_default_size (GTK_WINDOW (window), 840, 720);
+  //  gtk_window_fullscreen(GTK_WINDOW(window));
+  gtk_window_set_default_size(GTK_WINDOW(window), 840, 720);
 
   grid = gtk_grid_new();
   gtk_window_set_child(GTK_WINDOW(window), grid);
 
   // Первая строка
-  GtkWidget *label = gtk_label_new("Expression : ");
+  GtkWidget* label = gtk_label_new("Expression : ");
   gtk_widget_set_size_request(label, 120 * 7, 120);
   gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 7, 1);
 
   // Вторая строка
-  GtkWidget *button_AC = gtk_button_new_with_label("AC");
+  GtkWidget* button_AC = gtk_button_new_with_label("AC");
   gtk_widget_set_size_request(button_AC, 120, 120);
   g_signal_connect(button_AC, "clicked", G_CALLBACK(change_label), label);
   gtk_grid_attach(GTK_GRID(grid), button_AC, 0, 1, 1, 1);
 
-  GtkWidget *button_plus_minus = gtk_button_new_with_label("+/-");
+  GtkWidget* button_plus_minus = gtk_button_new_with_label("+/-");
   gtk_widget_set_size_request(button_plus_minus, 120, 120);
-  g_signal_connect(button_plus_minus, "clicked", G_CALLBACK(change_label), label);
+  g_signal_connect(button_plus_minus, "clicked", G_CALLBACK(change_label),
+                   label);
   gtk_grid_attach(GTK_GRID(grid), button_plus_minus, 1, 1, 1, 1);
 
   button = gtk_button_new_with_label("<-");
@@ -157,7 +158,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
   data* tmp_1 = g_new(data, 1);
   tmp_1->widget = label;
   tmp_1->text = "1";
-  g_signal_connect(button_1, "clicked", G_CALLBACK(script_add_text_to_label), tmp_1);
+  g_signal_connect(button_1, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_1);
   gtk_grid_attach(GTK_GRID(grid), button_1, 0, 4, 1, 1);
 
   GtkWidget* button_2 = gtk_button_new_with_label("2");
@@ -165,7 +167,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
   data* tmp_2 = g_new(data, 1);
   tmp_2->widget = label;
   tmp_2->text = "2";
-  g_signal_connect(button_2, "clicked", G_CALLBACK(script_add_text_to_label), tmp_2);
+  g_signal_connect(button_2, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_2);
   gtk_grid_attach(GTK_GRID(grid), button_2, 1, 4, 1, 1);
 
   GtkWidget* button_3 = gtk_button_new_with_label("3");
@@ -173,7 +176,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
   data* tmp_3 = g_new(data, 1);
   tmp_3->widget = label;
   tmp_3->text = "3";
-  g_signal_connect(button_3, "clicked", G_CALLBACK(script_add_text_to_label), tmp_3);
+  g_signal_connect(button_3, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_3);
   gtk_grid_attach(GTK_GRID(grid), button_3, 2, 4, 1, 1);
 
   GtkWidget* button_plus = gtk_button_new_with_label("+");
@@ -181,7 +185,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
   data* tmp_plus = g_new(data, 1);
   tmp_plus->widget = label;
   tmp_plus->text = "+";
-  g_signal_connect(button_plus, "clicked", G_CALLBACK(script_add_text_to_label), tmp_plus);
+  g_signal_connect(button_plus, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_plus);
   gtk_grid_attach(GTK_GRID(grid), button_plus, 3, 4, 1, 1);
 
   GtkWidget* button_acos = gtk_button_new_with_label("acos");
@@ -233,8 +238,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
   gtk_widget_show(window);
 }
 
-int main(int argc, char **argv) {
-  GtkApplication *app;
+int main(int argc, char** argv) {
+  GtkApplication* app;
   int status;
 
   app = gtk_application_new(NULL, G_APPLICATION_FLAGS_NONE);

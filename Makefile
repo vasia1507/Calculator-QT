@@ -8,6 +8,10 @@ clean:
 
 rebuild: clean main
 
+style_check:
+	clang-format -style=Google -i *.c
+	clang-format -style=Google -n *.c
+
 push:
 	git add ./
 	git commit -m '1'
