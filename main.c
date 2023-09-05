@@ -32,21 +32,14 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
   window = gtk_application_window_new(app);
   gtk_window_set_title(GTK_WINDOW(window), "SmartCalc_v1.0");
-
-  gtk_window_fullscreen(GTK_WINDOW(window));
-
-  gtk_window_set_default_size (GTK_WINDOW (window), 1920, 1080);
+//  gtk_window_fullscreen(GTK_WINDOW(window));
+  gtk_window_set_default_size (GTK_WINDOW (window), 840, 720);
 
   grid = gtk_grid_new();
   gtk_window_set_child(GTK_WINDOW(window), grid);
-  /*
-  button = gtk_button_new_with_label("Button 1");
-  g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
-  gtk_grid_attach(GTK_GRID(grid), button, 0, 0, 1, 2);
-  */
 
   // Первая строка
-  GtkWidget *label = gtk_label_new("Hello world !");
+  GtkWidget *label = gtk_label_new("Expression : ");
   gtk_widget_set_size_request(label, 120 * 7, 120);
   gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 7, 1);
 
