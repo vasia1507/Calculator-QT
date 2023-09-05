@@ -115,7 +115,7 @@ static void activate(GtkApplication* app, gpointer user_data) {
   g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
   gtk_grid_attach(GTK_GRID(grid), button, 5, 3, 1, 1);
 
-  button = gtk_button_new_with_label("log");
+  button = gtk_button_new_with_label("x");
   gtk_widget_set_size_request(button, 120, 120);
   g_signal_connect(button, "clicked", G_CALLBACK(change_label), label);
   gtk_grid_attach(GTK_GRID(grid), button, 6, 3, 1, 1);
@@ -195,28 +195,48 @@ static void activate(GtkApplication* app, gpointer user_data) {
 
   GtkWidget* button_acos = gtk_button_new_with_label("acos");
   gtk_widget_set_size_request(button_acos, 120, 120);
-  g_signal_connect(button_acos, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_acos = g_new(data, 1);
+  tmp_acos->widget = label;
+  tmp_acos->text = "acos(";
+  g_signal_connect(button_acos, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_acos);
   gtk_grid_attach(GTK_GRID(grid), button_acos, 4, 5, 1, 1);
 
   GtkWidget* button_asin = gtk_button_new_with_label("asin");
   gtk_widget_set_size_request(button_asin, 120, 120);
-  g_signal_connect(button_asin, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_asin = g_new(data, 1);
+  tmp_asin->widget = label;
+  tmp_asin->text = "asin(";
+  g_signal_connect(button_asin, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_asin);
   gtk_grid_attach(GTK_GRID(grid), button_asin, 5, 5, 1, 1);
 
   GtkWidget* button_atan = gtk_button_new_with_label("atan");
   gtk_widget_set_size_request(button_atan, 120, 120);
-  g_signal_connect(button_atan, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_atan = g_new(data, 1);
+  tmp_atan->widget = label;
+  tmp_atan->text = "atan(";
+  g_signal_connect(button_atan, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_atan);
   gtk_grid_attach(GTK_GRID(grid), button_atan, 6, 5, 1, 1);
 
   // Шестая строка
   GtkWidget* button_zero = gtk_button_new_with_label("0");
   gtk_widget_set_size_request(button_zero, 120, 120);
-  g_signal_connect(button_zero, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_zero = g_new(data, 1);
+  tmp_zero->widget = label;
+  tmp_zero->text = "0";
+  g_signal_connect(button_zero, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_zero);
   gtk_grid_attach(GTK_GRID(grid), button_zero, 0, 6, 2, 1);
 
   GtkWidget* button_dot = gtk_button_new_with_label(".");
   gtk_widget_set_size_request(button_dot, 120, 120);
-  g_signal_connect(button_dot, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_dot = g_new(data, 1);
+  tmp_dot->widget = label;
+  tmp_dot->text = ".";
+  g_signal_connect(button_dot, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_dot);
   gtk_grid_attach(GTK_GRID(grid), button_dot, 2, 6, 1, 1);
 
   GtkWidget* button_equal = gtk_button_new_with_label("=");
@@ -226,18 +246,30 @@ static void activate(GtkApplication* app, gpointer user_data) {
 
   GtkWidget* button_sqrt = gtk_button_new_with_label("sqrt");
   gtk_widget_set_size_request(button_sqrt, 120, 120);
-  g_signal_connect(button_sqrt, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_sqrt = g_new(data, 1);
+  tmp_sqrt->widget = label;
+  tmp_sqrt->text = "sqrt(";
+  g_signal_connect(button_sqrt, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_sqrt);
   gtk_grid_attach(GTK_GRID(grid), button_sqrt, 4, 6, 1, 1);
 
   GtkWidget* button_ln = gtk_button_new_with_label("ln");
   gtk_widget_set_size_request(button_ln, 120, 120);
-  g_signal_connect(button_ln, "clicked", G_CALLBACK(change_label), label);
+  data* tmp_ln = g_new(data, 1);
+  tmp_ln->widget = label;
+  tmp_ln->text = "ln(";
+  g_signal_connect(button_ln, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_ln);
   gtk_grid_attach(GTK_GRID(grid), button_ln, 5, 6, 1, 1);
 
-  GtkWidget* button_iks = gtk_button_new_with_label("x");
-  gtk_widget_set_size_request(button_iks, 120, 120);
-  g_signal_connect(button_iks, "clicked", G_CALLBACK(change_label), label);
-  gtk_grid_attach(GTK_GRID(grid), button_iks, 6, 6, 1, 1);
+  GtkWidget* button_log = gtk_button_new_with_label("log");
+  gtk_widget_set_size_request(button_log, 120, 120);
+  data* tmp_log = g_new(data, 1);
+  tmp_log->widget = label;
+  tmp_log->text = "log(";
+  g_signal_connect(button_log, "clicked", G_CALLBACK(script_add_text_to_label),
+                   tmp_log);
+  gtk_grid_attach(GTK_GRID(grid), button_log, 6, 6, 1, 1);
 
   gtk_widget_show(window);
 }
