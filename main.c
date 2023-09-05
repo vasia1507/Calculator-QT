@@ -11,6 +11,21 @@ static void script_add_text_to_label(GtkWidget* button, gpointer my_tmp);
 static void change_label(GtkWidget* button, GtkWidget* widget);
 static void activate(GtkApplication* app, gpointer user_data);
 
+static void draw(GtkDrawingArea* area, cairo_t* cr, int width, int height,
+                 gpointer data) {
+  cairo_set_source_rgb(cr, 0, 0, 0);
+  cairo_set_line_width(cr, 2.0);
+
+  // Начало линии
+  cairo_move_to(cr, 10, 10);
+
+  // Конец линии
+  cairo_line_to(cr, 190, 190);
+
+  // Рисование линии
+  cairo_stroke(cr);
+}
+
 static void script_add_text_to_label(GtkWidget* button, gpointer my_tmp) {
   data* tmp = (data*)(my_tmp);
   char* str = (char*)gtk_label_get_text(GTK_LABEL(tmp->widget));
@@ -269,6 +284,23 @@ static void activate(GtkApplication* app, gpointer user_data) {
   g_signal_connect(button_log, "clicked", G_CALLBACK(script_add_text_to_label),
                    tmp_log);
   gtk_grid_attach(GTK_GRID(grid), button_log, 6, 6, 1, 1);
+
+  GtkWidget* window2;
+  GtkWidget* drawing_area;
+  window2 = gtk_application_window_new(app);
+  drawing_area = gtk_drawing_area_new();
+  gtk_window_set_title(GTK_WINDOW(window2), "test");
+  gtk_window_set_default_size(GTK_WINDOW(window2), 200, 200);
+  gtk_widget_set_size_request(drawing_area, 200, 200);
+
+  gtk_drawing_area_set_content_width(GTK_DRAWING_AREA(drawing_area), 100);
+  gtk_drawing_area_set_content_height(GTK_DRAWING_AREA(drawing_area), 100);
+  gtk_drawing_area_set_draw_func(GTK_DRAWING_AREA(drawing_area), draw, NULL,
+                                 NULL);
+
+  g_signal_connect(drawing_area, "draw", G_CALLBACK(draw), NULL);
+  gtk_window_set_child(GTK_WINDOW(window2), drawing_area);
+  gtk_widget_show(window2);
 
   gtk_widget_show(window);
 }
