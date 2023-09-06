@@ -7,6 +7,8 @@ typedef struct {
   char* text;
 } data;
 
+static void draw(GtkDrawingArea* area, cairo_t* cr, int width, int height,
+                 gpointer data);
 static void script_add_text_to_label(GtkWidget* button, gpointer my_tmp);
 static void change_label(GtkWidget* button, GtkWidget* widget);
 static void activate(GtkApplication* app, gpointer user_data);
@@ -15,13 +17,10 @@ static void draw(GtkDrawingArea* area, cairo_t* cr, int width, int height,
                  gpointer data) {
   cairo_set_source_rgb(cr, 0, 0, 0);
   cairo_set_line_width(cr, 2.0);
-
   // Начало линии
   cairo_move_to(cr, 10, 10);
-
   // Конец линии
   cairo_line_to(cr, 190, 190);
-
   // Рисование линии
   cairo_stroke(cr);
 }
