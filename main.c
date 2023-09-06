@@ -16,7 +16,7 @@ static void activate(GtkApplication* app, gpointer user_data);
 static void draw(GtkDrawingArea* area, cairo_t* cr, int width, int height,
                  gpointer data) {
   cairo_set_source_rgb(cr, 0, 0, 0);
-  cairo_set_line_width(cr, 2.0);
+  cairo_set_line_width(cr, 1.0);
   // Начало линии
   cairo_move_to(cr, 10, 10);
   // Конец линии
