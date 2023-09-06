@@ -291,10 +291,9 @@ static void activate(GtkApplication* app, gpointer user_data) {
   drawing_area = gtk_drawing_area_new();
   gtk_window_set_title(GTK_WINDOW(window2), "test");
   gtk_window_set_default_size(GTK_WINDOW(window2), 200, 200);
-  gtk_widget_set_size_request(drawing_area, 200, 200);
 
-  gtk_drawing_area_set_content_width(GTK_DRAWING_AREA(drawing_area), 100);
-  gtk_drawing_area_set_content_height(GTK_DRAWING_AREA(drawing_area), 100);
+  gtk_drawing_area_set_content_width(GTK_DRAWING_AREA(drawing_area), 200);
+  gtk_drawing_area_set_content_height(GTK_DRAWING_AREA(drawing_area), 200);
   gtk_drawing_area_set_draw_func(GTK_DRAWING_AREA(drawing_area), draw, NULL,
                                  NULL);
 
