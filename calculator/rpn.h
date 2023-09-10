@@ -3,7 +3,7 @@
 
 #include "datatypes.h"
 
-stack* parse(char *exp);
+stack *parse(char *exp);
 void replaceUnary(char *exp);
 int pushNum(stack *dst, char *num_s);
 void closeBracket(stack *res, stack *op);

@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "datatypes.h"
@@ -11,34 +11,33 @@
 void plot(stack *exp);
 
 int main() {
-    int n = 25;
-    printf("Enter example:");
-    char *str = malloc(n * sizeof *str), tmp;
-    for (int i = 0; (tmp = getchar()) != '\n'; ++i) {
-        if (i == n) {
-            char *tmp_p;
-            n += 25;
-            str = realloc(tmp_p = str, n * sizeof *str);
-            if (str == NULL)
-                free(tmp_p);
-        }
-        if (str != NULL) {
-            str[i] = tmp;
-        }
+  int n = 25;
+  printf("Enter example:");
+  char *str = malloc(n * sizeof *str), tmp;
+  for (int i = 0; (tmp = getchar()) != '\n'; ++i) {
+    if (i == n) {
+      char *tmp_p;
+      n += 25;
+      str = realloc(tmp_p = str, n * sizeof *str);
+      if (str == NULL) free(tmp_p);
     }
     if (str != NULL) {
-        stack *res = parse(str);
-        plot(res);
-        s_destroy(res);
+      str[i] = tmp;
     }
-    free(str);
-    return 0;
+  }
+  if (str != NULL) {
+    stack *res = parse(str);
+    plot(res);
+    s_destroy(res);
+  }
+  free(str);
+  return 0;
 }
 
 void plot(stack *exp) {
-    stack *copy = s_copy(exp);
-    double real_y = calcExp(copy, 0);
-    printf("%.10lf\n", real_y);
+  stack *copy = s_copy(exp);
+  double real_y = calcExp(copy, 0);
+  printf("%.10lf\n", real_y);
 }
 
 /*void plot(stack *exp) {
