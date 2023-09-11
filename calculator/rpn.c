@@ -1,11 +1,9 @@
-#include "rpn.h"
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "datatypes.h"
+#include "calculator.h"
 
 /*
 
@@ -30,7 +28,7 @@
 */
 
 stack *parse(char *exp) {
-  const char chrOps[] = "~*/-+^";
+  const char chrOps[] = "~*/-+";
   replaceUnary(exp);
   stack *res = s_init();
   stack *op = s_init();
@@ -40,18 +38,21 @@ stack *parse(char *exp) {
       i += pushNum(res, &exp[i]);
     } else if (exp[i] == '(') {
       pushOp(op, 0);
-      ++i;
+      i += 1;
     } else if (exp[i] == ')') {
       closeBracket(res, op);
-      ++i;
-    } else if (strchr(chrOps, exp[i]) != NULL) {
-      processOp(res, op, strchr(chrOps, exp[i]) - chrOps + 1);
-      ++i;
+      i += 1;
     } else if (exp[i] == 'x') {
       pushX(res);
-      ++i;
+      i += 1;
+    } else if (strchr(chrOps, exp[i]) != NULL) {
+      processOp(res, op, strchr(chrOps, exp[i]) - chrOps + 1);
+      i += 1;
+    } else if (strncmp(&exp[i], "^", 1) == 0) {
+      processOp(res, op, 6);
+      i += 1;
     } else if (strncmp(&exp[i], "mod", 3) == 0) {
-      pushOp(op, 7);
+      processOp(res, op, 7);
       i += 3;
     } else if (strncmp(&exp[i], "sin", 3) == 0) {
       pushOp(op, 8);
@@ -122,10 +123,12 @@ void closeBracket(stack *res, stack *op) {
     dat = s_pop(op);
   }
   dat = s_pop(op);
-  if (dat.num >= 6 && dat.num <= 11)
+  if (dat.num >= 6 && dat.num <= 11) {
     s_push(res, dat);
-  else
+  }
+  else {
     s_push(op, dat);
+  }
 }
 
 void processOp(stack *res, stack *op, int id) {
@@ -160,7 +163,7 @@ double calcExp(stack *exp, double x) {
   if (dat.type == 1) {
     double a = 0, b = 0;
     b = calcExp(exp, x);
-    if (dat.num != 1 && dat.num < 7) {
+    if (dat.num != 1 && dat.num < 8) {
       a = calcExp(exp, x);
     }
     res = calc(a, b, dat.num);

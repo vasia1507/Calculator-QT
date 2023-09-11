@@ -1,7 +1,7 @@
-#include "datatypes.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "calculator.h"
 
 stack *s_init() {
   struct t_node *new_n = malloc(sizeof *new_n);

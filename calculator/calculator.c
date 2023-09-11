@@ -1,19 +1,21 @@
+#include "calculator.h"
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "datatypes.h"
-#include "rpn.h"
 
 #define WINDOW_H 35
 #define WINDOW_W 80
 
 void plot(stack *exp);
 
-int main() {
+int main(int argc, char** argv) {
   int n = 25;
-  printf("Enter example:");
-  char *str = malloc(n * sizeof *str), tmp;
+  //printf("Enter example:");
+  //char *str = malloc(n * sizeof *str), tmp;
+  char tmp;
+  char* str = argv[1];
+  /*
   for (int i = 0; (tmp = getchar()) != '\n'; ++i) {
     if (i == n) {
       char *tmp_p;
@@ -25,12 +27,13 @@ int main() {
       str[i] = tmp;
     }
   }
+  */
   if (str != NULL) {
     stack *res = parse(str);
     plot(res);
     s_destroy(res);
   }
-  free(str);
+  //free(str);
   return 0;
 }
 

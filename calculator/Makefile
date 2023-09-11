@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := 
 
 all: datatypes.o rpn.o calculator.o
 	$(CC) $(CFLAGS) $^ -o ./calculator -lm
