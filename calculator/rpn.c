@@ -125,8 +125,7 @@ void closeBracket(stack *res, stack *op) {
   dat = s_pop(op);
   if (dat.num >= 6 && dat.num <= 11) {
     s_push(res, dat);
-  }
-  else {
+  } else {
     s_push(op, dat);
   }
 }

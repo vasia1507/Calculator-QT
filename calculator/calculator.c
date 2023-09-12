@@ -9,12 +9,12 @@
 
 void plot(stack *exp);
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   int n = 25;
-  //printf("Enter example:");
-  //char *str = malloc(n * sizeof *str), tmp;
+  // printf("Enter example:");
+  // char *str = malloc(n * sizeof *str), tmp;
   char tmp;
-  char* str = argv[1];
+  char *str = argv[1];
   /*
   for (int i = 0; (tmp = getchar()) != '\n'; ++i) {
     if (i == n) {
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     plot(res);
     s_destroy(res);
   }
-  //free(str);
+  // free(str);
   return 0;
 }
 

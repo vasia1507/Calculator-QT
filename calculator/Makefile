@@ -1,8 +1,5 @@
-CC := gcc
-CFLAGS := 
-
 all: datatypes.o rpn.o calculator.o
-	$(CC) $(CFLAGS) $^ -o ./calculator -lm
+	gcc $^ -o ./calculator -lm
 
 clean:
 	rm -rf *.o ./calculator
