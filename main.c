@@ -13,11 +13,14 @@ static void script_add_text_to_label(GtkWidget* button, gpointer my_tmp);
 static void change_label(GtkWidget* button, GtkWidget* widget);
 static void activate(GtkApplication* app, gpointer user_data);
 
+/*
 static void script_equal(GtkWidget* expression, GtkWidget* answer) {
   char* str = (char*)gtk_label_get_text(GTK_LABEL(expression));
   char* tmp = calculate(str);
+  char* buff = (char*)malloc(strlen(tmp))
   strcat();
 }
+*/
 
 static void draw(GtkDrawingArea* area, cairo_t* cr, int width, int height,
                  gpointer data) {
