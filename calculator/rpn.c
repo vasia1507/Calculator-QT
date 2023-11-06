@@ -27,6 +27,20 @@
 
 */
 
+double start(char *argv) {
+  int n = 25;
+  double real_y = 0.;
+  char tmp;
+  char *str = argv;
+  if (str != NULL) {
+    stack *res = parse(str);
+    stack *copy = s_copy(res);
+    real_y = calcExp(copy, 0);
+    s_destroy(res);
+  }
+  return real_y;
+}
+
 stack *parse(char *exp) {
   const char chrOps[] = "~*/-+";
   replaceUnary(exp);

@@ -22,6 +22,7 @@ struct t_data s_pop(stack *s);
 void s_destroy(stack *s);
 stack *s_copy(stack *s);
 
+double start(char *argv);
 stack *parse(char *exp);
 void replaceUnary(char *exp);
 int pushNum(stack *dst, char *num_s);
